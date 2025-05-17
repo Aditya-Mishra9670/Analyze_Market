@@ -1,0 +1,64 @@
+# ---- General C++ ----
+*.o
+*.obj
+*.lo
+*.la
+*.al
+*.libs
+*.so
+*.so.*
+*.a
+*.cmake
+*.make
+*.bin
+*.log
+*.Makefile
+*cache.txt
+*.idx
+*.lib
+*.dll
+*.exe
+*.out
+*.app
+*.dSYM/
+*.d
+
+# ---- Qt ----
+Makefile*
+*.pro.user*
+*.qmake.stash
+*.autosave
+*.moc
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+
+# Qt Creator specific
+*.pro.user
+*.pro.user.*
+*.qmlproject.user
+*.qbs.user
+*.qbs.user.*
+*.creator.*
+*.creator
+*.kate-swp
+
+# Qt build folders
+build-*/
+debug/
+release/
+*.qm
+*.qrc
+*.ts
+
+# ---- OS Specific ----
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Linux
+*~
