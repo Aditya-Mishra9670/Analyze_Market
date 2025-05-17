@@ -35,6 +35,7 @@ public:
 
 private slots:
     void on_analyzeButton_clicked();
+    void on_browseButton_clicked();
 
 private:
     Ui::MainWindow *ui;

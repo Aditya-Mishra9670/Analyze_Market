@@ -7,10 +7,16 @@
 #include <QtCharts/QChart>
 #include <QtCharts/QChartView>
 #include <QtCharts/QValueAxis>
+#include <QFileDialog>
 
 #include <algorithm>
 #include <cmath>
 #include <map>
+const QString expectedHeader = "Date,Open,High,Low,Close,Adj Close,Volume";
+const QString requiredStructure = 
+    "Date,Open,High,Low,Close,Adj Close,Volume\n"
+    "2024-01-01,150.0,151.0,149.0,150.5,150.3,1000000\n"
+    "2024-01-02,152.0,153.0,151.0,152.5,152.3,1100000";
 
 QT_CHARTS_USE_NAMESPACE
 
@@ -20,16 +26,32 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     connect(ui->analyzeButton, &QPushButton::clicked, this, &MainWindow::on_analyzeButton_clicked);
+    connect(ui->browseButton, &QPushButton::clicked, this, &MainWindow::on_browseButton_clicked);
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+void MainWindow::on_browseButton_clicked()
+{
+    QString filePath = QFileDialog::getOpenFileName(this, "Select CSV File", "", "CSV Files (*.csv)");
+    if (!filePath.isEmpty()) {
+        selectedCSVPath = filePath;
+        ui->fileLineEdit->setText(filePath); // Show path in UI
+    }
+}
+
 
 void MainWindow::on_analyzeButton_clicked()
 {
-    QString path = "/home/aditya-mishra/Programming/Analyze_market/dummy_stock_data.csv";  // Path to your CSV file
+    QString path = selectedCSVPath;
+    if (path.isEmpty()) {
+        QMessageBox::warning(this, "No file selected", "Please select a CSV file first.");
+        return;
+    }
+
     loadCSV(path);
 
     double mean = 0, variance = 0, median = 0, mode = 0;
@@ -58,6 +80,13 @@ void MainWindow::loadCSV(const QString &filePath)
     }
 
     QTextStream in(&file);
+    QString headerline = in.readLine().trimmed();
+    if (headerline != expectedHeader) {
+        QMessageBox::warning(this, "Invalid File", "The CSV file does not match the expected structure:\n" + requiredStructure);
+        file.close();
+        return;
+    }
+    
     QString header = in.readLine();  // Skip header
 
     while (!in.atEnd()) {

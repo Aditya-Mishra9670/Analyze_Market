@@ -73,20 +73,35 @@
         </property>
        </widget>
       </item>
-       
-       <item row="5" column="0" colspan="2">
-        <widget class="QLabel" name="csvFileLabel">
-        <property name="text">
-        <string>No file selected</string>
+      <!-- Add fileLineEdit and browseButton in row 4 -->
+      <item row="4" column="0">
+       <widget class="QLineEdit" name="fileLineEdit">
+        <property name="readOnly">
+         <bool>true</bool>
         </property>
-        </widget>
-        </item>
-
-
-      <item row="4" column="0" colspan="2">
+        <property name="placeholderText">
+         <string>Select CSV file...</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QPushButton" name="browseButton">
+        <property name="text">
+         <string>Browse</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0" colspan="2">
        <widget class="QPushButton" name="analyzeButton">
         <property name="text">
          <string>Analyze</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0" colspan="2">
+       <widget class="QLabel" name="csvFileLabel">
+        <property name="text">
+         <string>No file selected</string>
         </property>
        </widget>
       </item>
