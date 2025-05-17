@@ -107,7 +107,7 @@ MIT License. See [LICENSE](LICENSE) for details.
 
 ## 🙏 Credits
 
-- Developed by [Your Name]
+- Developed by Eng. Aditya Mishra
 - Uses [Qt](https://www.qt.io/) for UI and charting
 
 ---
@@ -121,5 +121,3 @@ Please fork the repository and submit a PR.
 
 **Enjoy analyzing your stock data!**
 ```
-
----
